@@ -1,0 +1,12 @@
+#!/usr/bin/env ruby
+require 'gol'
+
+times = ARGV[0].to_i
+
+gol = Gol.new()
+times.times do
+  puts ?_ * 80
+  puts gol.format
+  gol = gol.tick
+end
+

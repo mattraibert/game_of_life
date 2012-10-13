@@ -1,7 +1,7 @@
 require 'gol/neighborhood'
 
 class Gol
-  def initialize(world = Gol.init(10))
+  def initialize(world = Gol.init(39))
     @world = world
   end
 

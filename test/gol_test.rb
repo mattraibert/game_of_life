@@ -40,9 +40,9 @@ class GolTest < MiniTest::Unit::TestCase
   def test_initialize
     random_gol = Gol.new
     world = random_gol.instance_variable_get(:@world)
-    assert_equal 10, world.size
+    assert_equal 39, world.size
     world.each do |stripe|
-      assert_equal 10, stripe.size
+      assert_equal 39, stripe.size
       stripe.each do |point|
         assert point == 0 || point == 1
       end
