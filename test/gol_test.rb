@@ -12,7 +12,7 @@ class GolTest < MiniTest::Unit::TestCase
     next_world = Gol.new([[0, 1, 0, 0],
                           [0, 1, 0, 0],
                           [0, 1, 0, 0],
-                          [1, 1, 0, 0]]).tick.instance_variable_get(:@world)
+                          [1, 1, 0, 0]]).tick.instance_variable_get(:@data)
 
     assert_equal 4, next_world.size
     assert_equal [[0, 1, 1, 0],
@@ -26,15 +26,15 @@ class GolTest < MiniTest::Unit::TestCase
   end
 
   def test_neighborhood
-    assert_equal WORLD, GOL.neighborhood(1, 1).instance_variable_get(:@neighborhood)
+    assert_equal WORLD, GOL.neighborhood(1, 1).instance_variable_get(:@data)
 
     assert_equal [[0, 1, 1],
                   [0, 1, 1],
-                  [0, 0, 1]], GOL.neighborhood(0, 0).instance_variable_get(:@neighborhood)
+                  [0, 0, 1]], GOL.neighborhood(0, 0).instance_variable_get(:@data)
 
     assert_equal [[1, 0, 0],
                   [1, 0, 1],
-                  [1, 0, 1]], GOL.neighborhood(2, 2).instance_variable_get(:@neighborhood)
+                  [1, 0, 1]], GOL.neighborhood(2, 2).instance_variable_get(:@data)
   end
 
   describe "a non-square world" do
@@ -45,13 +45,13 @@ class GolTest < MiniTest::Unit::TestCase
     it "should get the correct neighborhood" do
       assert_equal [[1, 1, 0],
                     [1, 0, 0],
-                    [1, 1, 0]], NON_SQUARE.neighborhood(2, 3).instance_variable_get(:@neighborhood)
+                    [1, 1, 0]], NON_SQUARE.neighborhood(2, 3).instance_variable_get(:@data)
     end
   end
 
   def test_initialize
     random_gol = Gol.new
-    world = random_gol.instance_variable_get(:@world)
+    world = random_gol.instance_variable_get(:@data)
     assert_equal 40, world.size
     world.each do |stripe|
       assert_equal 80, stripe.size

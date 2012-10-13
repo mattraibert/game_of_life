@@ -4,11 +4,11 @@ class Neighborhood
   end
 
   def initialize(neighborhood)
-    @neighborhood = neighborhood
+    @data = neighborhood
   end
 
   def point(row, col)
-    @neighborhood[row][col]
+    @data[row][col]
   end
 
   def tick
@@ -24,7 +24,7 @@ class Neighborhood
   end
 
   def sum
-    @neighborhood.inject(&:+).inject(&:+)
+    @data.inject(&:+).inject(&:+)
   end
 
   def center

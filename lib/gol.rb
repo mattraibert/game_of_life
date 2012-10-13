@@ -2,19 +2,19 @@ require 'gol/neighborhood'
 
 class Gol
   def initialize(world = Gol.init(80, 40))
-    @world = world
+    @data = world
   end
 
   def height
-    @world.size
+    @data.size
   end
 
   def width
-    @world.first.size
+    @data.first.size
   end
 
   def tick
-    next_world = @world.each_with_index.map do |stripe, row|
+    next_world = @data.each_with_index.map do |stripe, row|
       stripe.each_index.map do |col|
         neighborhood(row, col).tick
       end
@@ -23,11 +23,11 @@ class Gol
   end
 
   def format
-    @world.map { |row| row.map { |col| col == 1 ? ?0 : ' ' }.join }.join "\n"
+    @data.map { |row| row.map { |col| col == 1 ? ?0 : ' ' }.join }.join "\n"
   end
 
   def point(row, col)
-    @world[row][col]
+    @data[row][col]
   end
 
   def neighborhood(row, col)

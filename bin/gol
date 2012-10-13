@@ -6,7 +6,7 @@ times = ARGV[0].to_i
 gol = Gol.new
 times.times do
   puts gol.format
-  sleep(0.1)
+  sleep(0.05)
   gol = gol.tick
 end
 
