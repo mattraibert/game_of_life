@@ -54,7 +54,7 @@ class GolTest < MiniTest::Unit::TestCase
     world = random_gol.instance_variable_get(:@data)
     assert_equal 40, world.size
     world.each do |stripe|
-      assert_equal 80, stripe.size
+      assert_equal 150, stripe.size
       stripe.each do |point|
         assert point == 0 || point == 1
       end
