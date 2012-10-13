@@ -2,7 +2,7 @@ require 'gol/neighborhood'
 require 'matrix'
 
 class Gol
-  def initialize(world = Gol.init(80, 40))
+  def initialize(world = Gol.init(150, 40))
     @data = world
   end
 
@@ -15,8 +15,7 @@ class Gol
   end
 
   def tick
-    next_world = Matrix.build(@data.row_size, @data.column_size) { |row, col| neighborhood(row, col).tick }
-    Gol.new(next_world)
+    Gol.new(Matrix.build(@data.row_size, @data.column_size) { |row, col| neighborhood(row, col).tick })
   end
 
   def format

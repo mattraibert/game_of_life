@@ -54,7 +54,7 @@ class GolTest < MiniTest::Unit::TestCase
     random_gol = Gol.new
     world = random_gol.instance_variable_get(:@data)
     assert_equal 40, world.row_size
-    assert_equal 80, world.column_size
+    assert_equal 150, world.column_size
     world.each do |point|
       assert point == 0 || point == 1
     end
