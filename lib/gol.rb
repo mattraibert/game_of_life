@@ -1,8 +1,16 @@
 require 'gol/neighborhood'
 
 class Gol
-  def initialize(world = Gol.init(39))
+  def initialize(world = Gol.init(80, 40))
     @world = world
+  end
+
+  def height
+    @world.size
+  end
+
+  def width
+    @world.first.size
   end
 
   def tick
@@ -22,15 +30,11 @@ class Gol
     @world[row][col]
   end
 
-  def size
-    @world.size
-  end
-
   def neighborhood(row, col)
     Neighborhood.at_point(self, row, col)
   end
 
-  def self.init(size)
-    size.times.map { size.times.map { rand 2 }.freeze }.freeze
+  def self.init(width, height)
+    height.times.map { width.times.map { rand 2 }.freeze }.freeze
   end
 end

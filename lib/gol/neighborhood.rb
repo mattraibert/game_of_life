@@ -1,6 +1,6 @@
 class Neighborhood
   def self.at_point(world, row, col)
-    Neighborhood.new((-1..1).map { |delta_row| (-1..1).map { |delta_col| world.point((row + delta_row) % world.size, (col + delta_col) % world.size) } })
+    Neighborhood.new((-1..1).map { |delta_row| (-1..1).map { |delta_col| world.point((row + delta_row) % world.height, (col + delta_col) % world.width) } })
   end
 
   def initialize(neighborhood)

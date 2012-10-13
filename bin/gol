@@ -3,10 +3,10 @@ require 'gol'
 
 times = ARGV[0].to_i
 
-gol = Gol.new()
+gol = Gol.new
 times.times do
-  puts ?_ * 80
   puts gol.format
+  sleep(0.1)
   gol = gol.tick
 end
 

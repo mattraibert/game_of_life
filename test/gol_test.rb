@@ -8,7 +8,7 @@ class GolTest < MiniTest::Unit::TestCase
 
   GOL = Gol.new(WORLD)
 
-  def test_tick
+  def test_tick_integration
     next_world = Gol.new([[0, 1, 0, 0],
                           [0, 1, 0, 0],
                           [0, 1, 0, 0],
@@ -37,12 +37,24 @@ class GolTest < MiniTest::Unit::TestCase
                   [1, 0, 1]], GOL.neighborhood(2, 2).instance_variable_get(:@neighborhood)
   end
 
+  describe "a non-square world" do
+    NON_SQUARE = Gol.new([[0, 1, 1, 1],
+                          [0, 1, 1, 1],
+                          [0, 0, 1, 0]])
+
+    it "should get the correct neighborhood" do
+      assert_equal [[1, 1, 0],
+                    [1, 0, 0],
+                    [1, 1, 0]], NON_SQUARE.neighborhood(2, 3).instance_variable_get(:@neighborhood)
+    end
+  end
+
   def test_initialize
     random_gol = Gol.new
     world = random_gol.instance_variable_get(:@world)
-    assert_equal 39, world.size
+    assert_equal 40, world.size
     world.each do |stripe|
-      assert_equal 39, stripe.size
+      assert_equal 80, stripe.size
       stripe.each do |point|
         assert point == 0 || point == 1
       end
