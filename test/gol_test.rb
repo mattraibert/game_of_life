@@ -8,6 +8,19 @@ class GolTest < MiniTest::Unit::TestCase
 
   GOL = Gol.new(WORLD)
 
+  def test_tick
+    next_world = Gol.new([[0, 1, 0, 0],
+                          [0, 1, 0, 0],
+                          [0, 1, 0, 0],
+                          [1, 1, 0, 0]]).tick.instance_variable_get(:@world)
+
+    assert_equal 4, next_world.size
+    assert_equal [[0, 1, 1, 0],
+                  [1, 1, 1, 0],
+                  [0, 1, 1, 0],
+                  [1, 1, 1, 0]], next_world
+  end
+
   def test_format
     assert_equal "00 \n 0 \n00 ", GOL.format
   end

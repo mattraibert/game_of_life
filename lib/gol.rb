@@ -6,11 +6,12 @@ class Gol
   end
 
   def tick
-    @world = @world.each_with_index.map do |stripe, x|
+    next_world = @world.each_with_index.map do |stripe, x|
       stripe.each_index.map do |y|
         neighborhood(x, y).tick
       end
     end
+    Gol.new(next_world)
   end
 
   def format
