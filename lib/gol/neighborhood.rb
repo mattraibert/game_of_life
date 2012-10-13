@@ -1,14 +1,10 @@
 class Neighborhood
-  def self.at_point(world, row, col)
-    Neighborhood.new((-1..1).map { |delta_row| (-1..1).map { |delta_col| world.point((row + delta_row) % world.height, (col + delta_col) % world.width) } })
-  end
-
   def initialize(neighborhood)
     @data = neighborhood
   end
 
   def point(row, col)
-    @data[row][col]
+    @data[row, col]
   end
 
   def tick
@@ -24,7 +20,7 @@ class Neighborhood
   end
 
   def sum
-    @data.inject(&:+).inject(&:+)
+    @data.inject(&:+)
   end
 
   def center
