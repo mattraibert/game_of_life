@@ -1,15 +1,16 @@
 require 'test_helper'
-require 'gol'
+require 'gol/world'
+require 'matrix'
 
-class GolTest < MiniTest::Unit::TestCase
+class WorldTest < MiniTest::Unit::TestCase
   WORLD = Matrix[[1, 1, 0],
                  [0, 1, 0],
                  [1, 1, 0]]
 
-  GOL = Gol.new(WORLD)
+  GOL = World.new(WORLD)
 
   def test_tick_integration
-    next_world = Gol.new(Matrix[[0, 1, 0, 0],
+    next_world = World.new(Matrix[[0, 1, 0, 0],
                                 [0, 1, 0, 0],
                                 [0, 1, 0, 0],
                                 [1, 1, 0, 0]]).tick
@@ -39,7 +40,7 @@ class GolTest < MiniTest::Unit::TestCase
   end
 
   describe "a non-square world" do
-    NON_SQUARE = Gol.new(Matrix[[0, 1, 1, 1],
+    NON_SQUARE = World.new(Matrix[[0, 1, 1, 1],
                                 [0, 1, 1, 1],
                                 [0, 0, 1, 0]])
 
@@ -51,7 +52,7 @@ class GolTest < MiniTest::Unit::TestCase
   end
 
   def test_initialize
-    random_gol = Gol.new
+    random_gol = World.new
     world = random_gol.instance_variable_get(:@data)
     assert_equal 40, world.row_size
     assert_equal 150, world.column_size

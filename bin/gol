@@ -3,7 +3,7 @@ require 'gol'
 
 times = ARGV[0].to_i
 
-gol = Gol.new
+gol = World.new
 times.times do
   puts gol.format
   sleep(0.05)
