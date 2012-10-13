@@ -1,14 +1,14 @@
 class Neighborhood
-  def self.at_point(world, x, y)
-    Neighborhood.new((-1..1).map { |dx| (-1..1).map { |dy| world.point((x + dx) % world.size, (y + dy) % world.size) } })
+  def self.at_point(world, row, col)
+    Neighborhood.new((-1..1).map { |delta_row| (-1..1).map { |delta_col| world.point((row + delta_row) % world.size, (col + delta_col) % world.size) } })
   end
 
   def initialize(neighborhood)
     @neighborhood = neighborhood
   end
 
-  def point(x, y)
-    @neighborhood[x][y]
+  def point(row, col)
+    @neighborhood[row][col]
   end
 
   def tick

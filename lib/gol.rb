@@ -6,28 +6,28 @@ class Gol
   end
 
   def tick
-    next_world = @world.each_with_index.map do |stripe, x|
-      stripe.each_index.map do |y|
-        neighborhood(x, y).tick
+    next_world = @world.each_with_index.map do |stripe, row|
+      stripe.each_index.map do |col|
+        neighborhood(row, col).tick
       end
     end
     Gol.new(next_world)
   end
 
   def format
-    @world.map { |stripe| stripe.map { |x| x == 1 ? ?0 : ' ' }.join }.join "\n"
+    @world.map { |row| row.map { |col| col == 1 ? ?0 : ' ' }.join }.join "\n"
   end
 
-  def point(x, y)
-    @world[x][y]
+  def point(row, col)
+    @world[row][col]
   end
 
   def size
     @world.size
   end
 
-  def neighborhood(x, y)
-    Neighborhood.at_point(self, x, y)
+  def neighborhood(row, col)
+    Neighborhood.at_point(self, row, col)
   end
 
   def self.init(size)
