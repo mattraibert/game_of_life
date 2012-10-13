@@ -22,7 +22,7 @@ class Gol
   end
 
   def neighborhood(x, y)
-    Neighborhood.new(self, x, y)
+    Neighborhood.at_point(self, x, y)
   end
 
   def self.init(size)
