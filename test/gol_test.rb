@@ -14,7 +14,14 @@ class GolTest < MiniTest::Unit::TestCase
 
   def test_neighborhood
     assert_equal WORLD, GOL.neighborhood(1, 1).instance_variable_get(:@neighborhood)
-    assert_equal [[0, 1, 1], [0, 1, 1], [0, 0, 1]], GOL.neighborhood(0, 0).instance_variable_get(:@neighborhood)
+
+    assert_equal [[0, 1, 1],
+                  [0, 1, 1],
+                  [0, 0, 1]], GOL.neighborhood(0, 0).instance_variable_get(:@neighborhood)
+
+    assert_equal [[1, 0, 0],
+                  [1, 0, 1],
+                  [1, 0, 1]], GOL.neighborhood(2, 2).instance_variable_get(:@neighborhood)
   end
 
   def test_initialize

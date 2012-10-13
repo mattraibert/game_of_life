@@ -21,6 +21,10 @@ class Gol
     @world[x][y]
   end
 
+  def size
+    @world.size
+  end
+
   def neighborhood(x, y)
     Neighborhood.at_point(self, x, y)
   end
