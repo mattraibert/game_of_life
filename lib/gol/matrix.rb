@@ -6,4 +6,9 @@ class Matrix
       self[row_index, col_index]
     end
   end
+
+  def add_matrix(template, offset_row=0, offset_col=0)
+    #todo allow offset
+    Matrix.build(40, 150) { |row, col| template[row, col] || self[row, col] }
+  end
 end

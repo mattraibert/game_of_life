@@ -11,9 +11,9 @@ class WorldTest < MiniTest::Unit::TestCase
 
   def test_tick_integration
     next_world = World.new(Matrix[[0, 1, 0, 0],
-                                [0, 1, 0, 0],
-                                [0, 1, 0, 0],
-                                [1, 1, 0, 0]]).tick
+                                  [0, 1, 0, 0],
+                                  [0, 1, 0, 0],
+                                  [1, 1, 0, 0]]).tick
 
     assert_equal 4, next_world.width
     assert_equal 4, next_world.height
@@ -41,8 +41,8 @@ class WorldTest < MiniTest::Unit::TestCase
 
   describe "a non-square world" do
     NON_SQUARE = World.new(Matrix[[0, 1, 1, 1],
-                                [0, 1, 1, 1],
-                                [0, 0, 1, 0]])
+                                  [0, 1, 1, 1],
+                                  [0, 0, 1, 0]])
 
     it "should get the correct neighborhood" do
       assert_equal Matrix[[1, 1, 0],
