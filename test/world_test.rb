@@ -11,9 +11,9 @@ class WorldTest < MiniTest::Unit::TestCase
 
   def test_tick_integration
     next_world = World.new([[0, 1, 0, 0],
-                          [0, 1, 0, 0],
-                          [0, 1, 0, 0],
-                          [1, 1, 0, 0]]).tick.instance_variable_get(:@data)
+                            [0, 1, 0, 0],
+                            [0, 1, 0, 0],
+                            [1, 1, 0, 0]]).tick.instance_variable_get(:@data)
 
     assert_equal 4, next_world.size
     assert_equal [[0, 1, 1, 0],
@@ -40,8 +40,8 @@ class WorldTest < MiniTest::Unit::TestCase
 
   describe "a non-square world" do
     NON_SQUARE = World.new([[0, 1, 1, 1],
-                          [0, 1, 1, 1],
-                          [0, 0, 1, 0]])
+                            [0, 1, 1, 1],
+                            [0, 0, 1, 0]])
 
     it "should get the correct neighborhood" do
       assert_equal [[1, 1, 0],

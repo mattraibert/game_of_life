@@ -3,7 +3,7 @@ require 'gol'
 
 times = ARGV[0].to_i
 
-gol = World.new
+gol = World.new(Toys.empty(150, 40).add_matrix(Toys.glider_gun))
 times.times do
   puts gol.format
   sleep(0.05)
