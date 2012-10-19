@@ -1,6 +1,8 @@
 require 'gol/matrix'
 
 class World
+  attr_reader :data
+
   def initialize(world = World.init(150, 40))
     @data = world
   end

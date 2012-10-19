@@ -1,6 +1,7 @@
 source :rubygems
 
 gem 'five_leaves'
+gem 'gosu'
 
 group :development do
   gem 'debugger'

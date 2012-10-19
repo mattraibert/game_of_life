@@ -3,10 +3,14 @@ require 'gol'
 
 times = ARGV[0].to_i
 
-gol = World.new(Toys.empty(150, 40).add_matrix(Toys.glider_gun))
-times.times do
-  puts gol.format
-  sleep(0.05)
-  gol = gol.tick
-end
+window = Window.new(World.new(World.init(100, 100)))
+window.show
+#gol = World.new#(Toys.empty(150, 40).add_matrix(Toys.glider_gun))
+#gol = World.new(Toys.empty(150, 40).add_matrix(Toys.some_gun))
+
+#times.times do
+#  puts gol.format
+#  sleep(0.05)
+#  gol = gol.tick
+#end
 
