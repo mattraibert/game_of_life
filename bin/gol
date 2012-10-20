@@ -1,8 +1,8 @@
 #!/usr/bin/env ruby
 require 'gol'
 
-world = World.new(World.init(200, 150))
-#world = World.new(Toys.empty(200, 150).add_matrix(Toys.some_gun))
+#world = World.new(World.init(200, 150))
+world = World.new(Toys.empty(200, 150).add_array(Toys.some_gun))
 @worlds = 100.times.map do |frame_number|
   print frame_number
   world = world.tick

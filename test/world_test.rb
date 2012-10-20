@@ -1,6 +1,5 @@
 require 'test_helper'
 require 'gol/world'
-require 'matrix'
 
 class WorldTest < MiniTest::Unit::TestCase
   WORLD = [[1, 1, 0],

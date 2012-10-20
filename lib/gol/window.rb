@@ -8,7 +8,7 @@ class Window < Gosu::Window
     @animation = Gosu::Image.new(self, "./white_pixel.png", true)
 
     @worlds = world
-    @stars = world.peek.data.map { |it| Star.new(@animation) }
+    @stars = world.peek.data.map { |it| it.map { Star.new(@animation) } }
   end
 
   def update
@@ -16,9 +16,11 @@ class Window < Gosu::Window
 
   def draw
     world = @worlds.next
-    @stars.each_with_index do |star, row, column|
-      star.warp(column, row)
-      star.draw if world.point(row, column) == 1
+    @stars.each_with_index do |stripe, row|
+      stripe.each_with_index do |star, column|
+        star.warp(column, row)
+        star.draw if world.point(row, column) == 1
+      end
     end
   end
 end
