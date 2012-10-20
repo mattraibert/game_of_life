@@ -1,5 +1,4 @@
 require 'five_leaves/range_util.rb'
-require 'benchmark'
 
 class Field
   attr_reader :data

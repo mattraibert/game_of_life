@@ -2,5 +2,7 @@
 require 'gol'
 require 'gol/fast_gol'
 
-Window.new(Field.new(Toys.empty(100, 100).add_array(Toys.glider_gun))).show
-#Window.new(World.new(Toys.empty(100, 100).add_array(Toys.glider_gun))).show
+gun_array = Toys.add_arrays(Toys.empty(100, 40), Toys.glider_gun)
+
+Window.new(Field.new(gun_array)).show
+Window.new(World.new(gun_array)).show

@@ -1,3 +1,5 @@
+require 'gol/neighborhood'
+
 class World
   attr_reader :data
 

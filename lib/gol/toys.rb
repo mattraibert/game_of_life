@@ -1,6 +1,14 @@
 require 'gol/rle'
 
 module Toys
+  def self.add_arrays(base, template)
+    base.each_with_index.map do |stripe, row|
+      stripe.each_with_index.map do |it, col|
+        (template[row] && template[row][col]) || it
+      end
+    end
+  end
+
   def self.floater
     [[false, true, false],
      [true, false, false],
@@ -37,7 +45,7 @@ module Toys
                     "21bo$12bo8boboo5bo26bo6bo11bo21boo$24b3o3bo3bo33bo$25boo5bo23boo11bo$56boo9b3o"))
   end
 
-  def self.empty(width, height)
-    height.times.map { width.times.map { false } }
+  def self.empty(cols, rows = cols)
+    rows.times.map { cols.times.map { false } }
   end
 end
