@@ -1,25 +1,30 @@
 require 'gosu'
 require 'gol/world'
 
+FPS = 3
+
 class Window < Gosu::Window
   def initialize(world)
     super(1200, 700, false)
     self.caption = "Gosu Tutorial Game"
     @animation = Gosu::Image.new(self, "./white_pixel.png", true)
 
-    @worlds = world
-    @stars = world.peek.data.map { |it| it.map { Star.new(@animation) } }
+    @world = world
+    @stars = world.data.map { |it| it.map { Star.new(@animation) } }
   end
 
   def update
+    #@count ||= 0
+    #@count = (@count + 1 % 10)
   end
 
   def draw
-    world = @worlds.next
+    @world.tick
+
     @stars.each_with_index do |stripe, row|
       stripe.each_with_index do |star, column|
         star.warp(column, row)
-        star.draw if world.point(row, column) == 1
+        star.draw if @world.point(row, column)
       end
     end
   end

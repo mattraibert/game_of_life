@@ -1,13 +1,15 @@
 #!/usr/bin/env ruby
 require 'gol'
+require 'gol/fast_gol'
 
-#world = World.new(World.init(200, 150))
-world = World.new(Toys.empty(200, 150).add_array(Toys.some_gun))
-@worlds = 100.times.map do |frame_number|
-  print frame_number
-  world = world.tick
-end.each
-puts @worlds
+#world =
+#@worlds = 10.times.map do |frame_number|
+#  print frame_number
+#  world = world.tick
+#end.each
+#puts @worlds
 
-window = Window.new(@worlds)
+array = Toys.empty(100, 100).add_array(Toys.glider_gun)
+puts Field.new(array).format
+window = Window.new(Field.new(array))
 window.show

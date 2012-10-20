@@ -7,6 +7,5 @@ def decode(str)
 end
 
 def to_a(string)
-  string = string.gsub(?b, ?0).gsub(?o, ?1)
-  string.split(?$).map { |row| row.ljust(100, ?0).each_char.map &:to_i }
+  string.split(?$).map { |row| row.ljust(100, ?0).each_char.map { |char| {?b => false, ?o => true}[char] } }
 end
