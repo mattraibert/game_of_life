@@ -1,16 +1,13 @@
 #!/usr/bin/env ruby
 require 'gol'
 
-times = ARGV[0].to_i
+world = World.new(World.init(200, 150))
+#world = World.new(Toys.empty(200, 150).add_matrix(Toys.some_gun))
+@worlds = 100.times.map do |frame_number|
+  print frame_number
+  world = world.tick
+end.each
+puts @worlds
 
-window = Window.new(World.new(World.init(100, 100)))
+window = Window.new(@worlds)
 window.show
-#gol = World.new#(Toys.empty(150, 40).add_matrix(Toys.glider_gun))
-#gol = World.new(Toys.empty(150, 40).add_matrix(Toys.some_gun))
-
-#times.times do
-#  puts gol.format
-#  sleep(0.05)
-#  gol = gol.tick
-#end
-
