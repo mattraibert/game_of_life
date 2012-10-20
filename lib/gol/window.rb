@@ -10,20 +10,17 @@ class Window < Gosu::Window
     @animation = Gosu::Image.new(self, "./white_pixel.png", true)
 
     @world = world
-    @stars = world.data.map { |it| it.map { Star.new(@animation) } }
-  end
-
-  def update
-    #@count ||= 0
-    #@count = (@count + 1 % 10)
+    @stars = world.data.each_with_index.map do |stripe, row|
+      stripe.each_with_index.map do |it, col|
+        Star.new(@animation).tap { |star| star.warp(col, row) }
+      end
+    end
   end
 
   def draw
     @world.tick
-
     @stars.each_with_index do |stripe, row|
       stripe.each_with_index do |star, column|
-        star.warp(column, row)
         star.draw if @world.point(row, column)
       end
     end
@@ -31,19 +28,19 @@ class Window < Gosu::Window
 end
 
 class Star
-  attr_reader :x, :y
+  attr_reader :col, :row
 
   def initialize(animation)
     @animation = animation
   end
 
-  def warp(x, y)
-    @x = x
-    @y = y
+  def warp(col, row)
+    @col = col
+    @row = row
   end
 
   def draw
-    @animation.draw(@x * 4, @y * 4, 0)
+    @animation.draw(@col * 4, @row * 4, 0)
   end
 end
 

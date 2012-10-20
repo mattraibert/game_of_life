@@ -1,0 +1,16 @@
+#!/usr/bin/env ruby
+require 'gol'
+require 'gol/fast_gol'
+
+Benchmark.bm do |x|
+  x.report do
+    gun_array = Toys.empty(100, 40).add_array(Toys.glider_gun)
+    #@gol = World.new(gun_array)
+    @gol = Field.new(gun_array)
+    100.times do
+      system('clear')
+      puts @gol.format
+      @gol.tick
+    end
+  end
+end

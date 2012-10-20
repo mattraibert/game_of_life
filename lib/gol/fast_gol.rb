@@ -62,13 +62,3 @@ class Field
   end
 end
 
-Benchmark.bm do |x|
-  x.report do
-    @field = Field.new
-    100.times do
-      system('clear')
-      puts @field.format
-      @field.tick
-    end
-  end
-end

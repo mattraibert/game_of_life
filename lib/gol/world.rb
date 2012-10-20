@@ -1,7 +1,7 @@
 class World
   attr_reader :data
 
-  def initialize(world = World.init(150, 40))
+  def initialize(world = World.init(40, 150))
     @data = world
   end
 
@@ -14,16 +14,15 @@ class World
   end
 
   def tick
-    next_world = @data.each_with_index.map do |stripe, row|
+    @data = @data.each_with_index.map do |stripe, row|
       stripe.each_index.map do |col|
         neighborhood(row, col).tick
       end
     end
-    World.new(next_world)
   end
 
   def format
-    @data.map { |row| row.map { |col| col == 1 ? ?0 : ' ' }.join }.join "\n"
+    @data.map { |row| row.map { |col| col ? ?0 : ' ' }.join }.join "\n"
   end
 
   def point(row, col)
@@ -34,7 +33,7 @@ class World
     Neighborhood.at_point(self, row, col)
   end
 
-  def self.init(width, height)
-    height.times.map { width.times.map { rand 2 }.freeze }.freeze
+  def self.init(rows, cols, density = 0.5)
+    rows.times.map { cols.times.map { rand < density } }
   end
 end

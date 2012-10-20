@@ -2,14 +2,5 @@
 require 'gol'
 require 'gol/fast_gol'
 
-#world =
-#@worlds = 10.times.map do |frame_number|
-#  print frame_number
-#  world = world.tick
-#end.each
-#puts @worlds
-
-array = Toys.empty(100, 100).add_array(Toys.glider_gun)
-puts Field.new(array).format
-window = Window.new(Field.new(array))
-window.show
+Window.new(Field.new(Toys.empty(100, 100).add_array(Toys.glider_gun))).show
+#Window.new(World.new(Toys.empty(100, 100).add_array(Toys.glider_gun))).show

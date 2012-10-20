@@ -2,23 +2,23 @@ require 'test_helper'
 require 'gol/world'
 
 class WorldTest < MiniTest::Unit::TestCase
-  WORLD = [[1, 1, 0],
-           [0, 1, 0],
-           [1, 1, 0]]
+  WORLD = [[true, true, false],
+           [false, true, false],
+           [true, true, false]]
 
   GOL = World.new(WORLD)
 
   def test_tick_integration
-    next_world = World.new([[0, 1, 0, 0],
-                            [0, 1, 0, 0],
-                            [0, 1, 0, 0],
-                            [1, 1, 0, 0]]).tick.instance_variable_get(:@data)
+    next_world = World.new([[false, true, false, false],
+                            [false, true, false, false],
+                            [false, true, false, false],
+                            [true, true, false, false]]).tick
 
     assert_equal 4, next_world.size
-    assert_equal [[0, 1, 1, 0],
-                  [1, 1, 1, 0],
-                  [0, 1, 1, 0],
-                  [1, 1, 1, 0]], next_world
+    assert_equal [[false, true, true, false],
+                  [true, true, true, false],
+                  [false, true, true, false],
+                  [true, true, true, false]], next_world
   end
 
   def test_format
@@ -28,24 +28,24 @@ class WorldTest < MiniTest::Unit::TestCase
   def test_neighborhood
     assert_equal WORLD, GOL.neighborhood(1, 1).instance_variable_get(:@data)
 
-    assert_equal [[0, 1, 1],
-                  [0, 1, 1],
-                  [0, 0, 1]], GOL.neighborhood(0, 0).instance_variable_get(:@data)
+    assert_equal [[false, true, true],
+                  [false, true, true],
+                  [false, false, true]], GOL.neighborhood(0, 0).instance_variable_get(:@data)
 
-    assert_equal [[1, 0, 0],
-                  [1, 0, 1],
-                  [1, 0, 1]], GOL.neighborhood(2, 2).instance_variable_get(:@data)
+    assert_equal [[true, false, false],
+                  [true, false, true],
+                  [true, false, true]], GOL.neighborhood(2, 2).instance_variable_get(:@data)
   end
 
   describe "a non-square world" do
-    NON_SQUARE = World.new([[0, 1, 1, 1],
-                            [0, 1, 1, 1],
-                            [0, 0, 1, 0]])
+    NON_SQUARE = World.new([[false, true, true, true],
+                            [false, true, true, true],
+                            [false, false, true, false]])
 
     it "should get the correct neighborhood" do
-      assert_equal [[1, 1, 0],
-                    [1, 0, 0],
-                    [1, 1, 0]], NON_SQUARE.neighborhood(2, 3).instance_variable_get(:@data)
+      assert_equal [[true, true, false],
+                    [true, false, false],
+                    [true, true, false]], NON_SQUARE.neighborhood(2, 3).instance_variable_get(:@data)
     end
   end
 
@@ -56,7 +56,7 @@ class WorldTest < MiniTest::Unit::TestCase
     world.each do |stripe|
       assert_equal 150, stripe.size
       stripe.each do |point|
-        assert point == 0 || point == 1
+        assert point == true || point == false
       end
     end
   end
