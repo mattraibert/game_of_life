@@ -1,4 +1,5 @@
 require 'five_leaves/range_util.rb'
+require 'peach'
 
 class Field
   attr_reader :data
@@ -20,7 +21,7 @@ class Field
   end
 
   def tick
-    @data = @data.each_with_index.map do |stripe, row|
+    @data = @data.each_with_index.pmap do |stripe, row|
       stripe.each_with_index.map do |it, col|
         descendant?(row, col)
       end

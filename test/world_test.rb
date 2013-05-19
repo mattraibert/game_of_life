@@ -49,6 +49,19 @@ class WorldTest < MiniTest::Unit::TestCase
     end
   end
 
+  def test_split
+    a_world = World.new([[false, true, false, true],
+                         [false, true, true, false],
+                         [false, false, true, false],
+                         [false, false, false, false]])
+
+    data = a_world.tick_subworlds(2)
+    assert_equal([[true, true, false, false],
+                  [true, true, false, true]], data[0])
+    assert_equal([[false, true, true, false],
+                  [false, false, true, false]], data[1])
+  end
+
   def test_initialize
     random_gol = World.new
     world = random_gol.instance_variable_get(:@data)

@@ -15,6 +15,15 @@ class World
     @data.first.size
   end
 
+  def slices(size, num_slices)
+    size.times.each_slice (size/num_slices)
+  end
+
+  def tick_subworlds(num_subarrays)
+    0
+    size - 1
+  end
+
   def tick
     @data = @data.each_with_index.map do |stripe, row|
       stripe.each_index.map do |col|

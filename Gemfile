@@ -1,11 +1,9 @@
 source :rubygems
 
 gem 'five_leaves'
-gem 'gosu'
+gem 'peach'
 
 group :development do
-  gem 'debugger'
-  gem 'ruby-debug-ide'
   gem 'posto'
   gem 'minitest', '>= 0'
   gem 'minitest-reporters', '>= 0.5.0'
